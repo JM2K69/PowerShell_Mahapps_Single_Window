@@ -43,7 +43,7 @@ if ($global:ReadmeDisplay -ne $true){Write-host "If you need to reference this d
 write-host "Found the following interactable elements from our form" -ForegroundColor Cyan
 get-variable *WPF*
 }
-Get-FormVariables
+#Get-FormVariables
 
 
 $WPF_test.Add_Click({
