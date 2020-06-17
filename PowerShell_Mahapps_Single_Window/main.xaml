@@ -1,0 +1,252 @@
+<controls:MetroWindow
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+		xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+    	xmlns:controlzEx="urn:controlzex"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Name="MainPanel" 
+        WindowStyle="None"
+        Title="Mahapps WPF Single Child windows"
+		Height="500"
+		Width="550"
+		WindowStartupLocation="CenterScreen" Topmost="False"
+        BorderThickness="1" 		
+		GlowBrush="{DynamicResource AccentColorBrush}"
+		RenderOptions.ClearTypeHint="Enabled"
+        TextOptions.TextFormattingMode="Display">  
+	<Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="resources\Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+    </Window.Resources>	
+	
+        <controls:MetroWindow.LeftWindowCommands>
+        <controls:WindowCommands>						
+            <Button Name="Github" ToolTip="Github Link JM2K69">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_social_github_octocat_solid}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.LeftWindowCommands>			
+        <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+			<StackPanel Orientation="Horizontal">					
+            <Button Name="test" ToolTip="About" Margin="-5 0 -5 0">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconEntypo Kind="Info" />
+                </StackPanel>
+            </Button>
+			<Button Name="Theme" ToolTip="Switch Theme" Margin="-5 0 0 0">
+                <StackPanel Orientation="Horizontal">
+					<iconPacks:PackIconFontAwesome Kind="SyncSolid" />
+                </StackPanel>
+            </Button>
+			<Button Name="BaseColor" ToolTip="Switch BaseColor" Margin="-5 0 0 0">
+                <StackPanel Orientation="Horizontal">
+           <iconPacks:PackIconRPGAwesome Kind="PerspectiveDiceRandom" />
+                </StackPanel>
+            </Button>
+			</StackPanel>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>			
+
+
+
+	<Grid Name="RootGrid" >
+		<StackPanel Orientation="Vertical" Margin="0,10,0,10">
+			<StackPanel Orientation="Horizontal" Margin="20,0,0,0" HorizontalAlignment="Center ">
+			<iconPacks:PackIconZondicons Kind="BrowserWindowNew" Foreground="{DynamicResource MahApps.Brushes.Accent}" Width="40" Height="40" />
+				<Label FontSize="25"  Content="Mahapps single child Windows" Foreground="#FF444444" Margin="5 0 0 0 "></Label>
+			</StackPanel>
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+      <StackPanel Orientation="Horizontal">
+       <Button Name="First_Child" Width="140" Height="40" Margin="5" Content="Single child demo"/>
+       <Button Name="Second_Child" Width="140" Height="40" Margin="5" Content="Second child demo"/>
+       <Button Name="Third_Child" Width="140" Height="40" Margin="5" Content="Third child demo"/>
+      </StackPanel>
+      <GroupBox Header="Third Child Option override" Margin="0 15">
+      <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+          <Label>Opacity</Label>
+          <Slider Name="Opacity" Height="30" Width="130"
+                            Margin="4"
+                            controls:SliderHelper.ChangeValueBy="SmallChange"
+                            controls:SliderHelper.EnableMouseWheel="MouseHover"
+                            AutoToolTipPlacement="TopLeft"
+                            Maximum="1"
+                            Minimum="0"
+                            TickPlacement="TopLeft"
+                            Ticks="0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9"
+                            Orientation="Horizontal"
+                            SmallChange="0.1"
+                            Value="0.5" />
+			<Label Content="{Binding ElementName=Opacity, Path=Value}"  ContentStringFormat="Opacity value {0:,0.0}" />      
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+         <Label>Color</Label>
+         <ComboBox Name="Colors" Width="100" Margin="5 0">
+            <ComboBoxItem>Red</ComboBoxItem>
+            <ComboBoxItem>Green</ComboBoxItem>
+            <ComboBoxItem>Blue</ComboBoxItem>
+            <ComboBoxItem>Purple</ComboBoxItem>
+            <ComboBoxItem>Orange</ComboBoxItem>
+            <ComboBoxItem>Lime</ComboBoxItem>
+            <ComboBoxItem>Teal</ComboBoxItem>
+            <ComboBoxItem>Cyan</ComboBoxItem>
+            <ComboBoxItem>Indigo</ComboBoxItem>
+            <ComboBoxItem>Violet</ComboBoxItem>
+            <ComboBoxItem>Pink</ComboBoxItem>
+            <ComboBoxItem>Magenta</ComboBoxItem>
+            <ComboBoxItem>Yellow</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Gray</ComboBoxItem>
+         </ComboBox>
+        </StackPanel>
+         <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+         <Label>Override Setting for Third Child Windows</Label>
+          <CheckBox Name="Override"></CheckBox>
+        </StackPanel>
+        </StackPanel>
+      </GroupBox>
+    
+    </StackPanel>
+   
+		</StackPanel>
+		<simpleChildWindow:ChildWindow Name="child"
+										Title="About Single Child"
+										Padding="15"
+										HorizontalContentAlignment="Stretch"
+										VerticalContentAlignment="Stretch"
+										CloseByEscape="True"
+										IsAutoCloseEnabled="True"
+										OverlayBrush="Transparent"
+										ChildWindowHeight="250"
+										ChildWindowWidth="300"
+										EnableDropShadow="True"
+										BorderBrush="{DynamicResource MahApps.Brushes.AccentBase}"
+										BorderThickness="1"
+										GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+										AllowMove="True">
+			<simpleChildWindow:ChildWindow.Icon>
+				<iconPacks:PackIconEntypo Width="22"
+										Height="22"
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"
+										Kind="Info" />
+			</simpleChildWindow:ChildWindow.Icon>
+            <Grid>
+				<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+					<TextBlock
+						Margin="20"
+						FontSize="36"
+						FontWeight="Thin"
+						Text="@JM2K69" />
+						<TextBlock 
+							Margin="20"
+							Text="Mahapps single Child Windows" />
+						<TextBlock 
+							Margin="20"
+							FontWeight="Thin"
+							Text="Preview Mahapps 2.0 and Simple Child" />
+					<TextBlock 
+							Margin="20"
+							Text="Note: it's an auto closing window... or press ESC to close" />
+							<StackPanel Margin="25,25,25,0"  VerticalAlignment="Top" Orientation="Vertical">
+		
+		</StackPanel>
+
+				</StackPanel>
+            </Grid>
+        </simpleChildWindow:ChildWindow>
+		<simpleChildWindow:ChildWindow Name="SCDE1"
+								Title="User"
+								BorderBrush="{DynamicResource MahApps.Brushes.AccentBase}"
+								BorderThickness="1"
+								GlowBrush="{DynamicResource AccentColorBrush}"
+								AllowMove="True"
+								ShowCloseButton="True"
+								OverlayBrush="{DynamicResource AccentColorBrush}">
+			<simpleChildWindow:ChildWindow.Icon>
+				<iconPacks:PackIconPicolIcons Width="18"
+										Height="18"
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"
+										Kind="UserClose" />
+			</simpleChildWindow:ChildWindow.Icon>
+			<Grid>
+				<StackPanel>
+					<TextBlock 
+					Margin="20"
+					FontSize="26"
+					FontWeight="Thin"
+					Text="Demo Child.." />
+					<StackPanel Margin="10" Orientation="Horizontal">
+						<iconPacks:PackIconPicolIcons Width="18"
+												Height="18"
+												HorizontalAlignment="Center"
+												VerticalAlignment="Center"
+												Kind="UserClose" 
+												Foreground="{DynamicResource MahApps.Brushes.Accent}"/>
+						<TextBox Margin="5 0 0 0 " Name="UserName" Text="JM2K69" />
+					</StackPanel>
+				</StackPanel>	
+			</Grid>
+		</simpleChildWindow:ChildWindow>
+		<simpleChildWindow:ChildWindow Name="SCDE2"
+								Title="Move Me"
+								BorderBrush="{DynamicResource MahApps.Brushes.AccentBase}"
+								ChildWindowHeight="250"
+								ChildWindowWidth="350"
+								BorderThickness="1"
+								IsModal="True"
+								GlowBrush="{DynamicResource AccentColorBrush}"
+								AllowMove="True"
+								ShowCloseButton="False"
+								OverlayBrush="{DynamicResource AccentColorBrush}">
+			<Grid>
+				<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+					<TextBlock 
+						Margin="5"
+						FontSize="36"
+						FontWeight="Thin"
+						Text="Demo Child" />
+						<StackPanel>
+										<Button Name="XClose2" Margin="15" Width="60"  Content="Close" />
+						</StackPanel>
+				</StackPanel>	
+			</Grid>
+		</simpleChildWindow:ChildWindow>
+<simpleChildWindow:ChildWindow 
+                               Name="SCDE3"
+                               Title="Overlay with Opacity"
+                               Padding="15"
+                               AllowMove="True"
+                               ShowCloseButton="True">
+
+  <simpleChildWindow:ChildWindow.OverlayBrush>
+    <SolidColorBrush Opacity="0.8" Color="{StaticResource MahApps.Colors.Gray2}" />
+  </simpleChildWindow:ChildWindow.OverlayBrush>
+
+  <StackPanel Margin="20">
+    <StackPanel Orientation="Horizontal">
+      <Button Name="XClose" Margin="5" Content="Close" />
+      <Button Margin="5" Content="Reset To Default" />
+    </StackPanel>
+  </StackPanel>
+</simpleChildWindow:ChildWindow>
+	</Grid>
+</controls:MetroWindow>
